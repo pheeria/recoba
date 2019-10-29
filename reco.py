@@ -8,6 +8,11 @@ CORS(app)
 socketio = SocketIO(app, cors_allowed_origins='*')
 
 
+@app.route('/'):
+def salem():
+    return "Sälem, Älem!"
+
+
 @app.route('/new', methods=['POST'])
 def send_swimlanes():
     json = request.get_json()
