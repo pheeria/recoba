@@ -6,7 +6,7 @@ from models.transformations import transform
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins='*')
+socketio = SocketIO(app, cors_allowed_origins='*', cookie=None)
 
 
 @app.route('/')
