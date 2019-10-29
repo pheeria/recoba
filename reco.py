@@ -8,7 +8,7 @@ CORS(app)
 socketio = SocketIO(app, cors_allowed_origins='*')
 
 
-@app.route('/'):
+@app.route('/')
 def salem():
     return "Sälem, Älem!"
 
