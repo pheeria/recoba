@@ -1,10 +1,13 @@
 from user_agents import parse
 def transform(req):
-    useragent = parse(req["user_agent"])
+    try:
+        useragent = parse(req["user_agent"])
+    except:
+        useragent = None
     friendly_useragent = 'web'
-    if useragent.is_mobile and useragent.os.family == 'iOs':
+    if useragent and useragent.is_mobile and useragent.os.family == 'iOs':
         friendly_useragent = 'apple'
-    if useragent.is_mobile and useragent.os.family == 'Android':
+    if useragent and useragent.is_mobile and useragent.os.family == 'Android':
         friendly_useragent = 'android'
     return {
         "brand": req['brand'],
