@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO
+from models.transformations import transform
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
@@ -16,8 +17,8 @@ def salem():
 @app.route('/new', methods=['POST'])
 def send_swimlanes():
     json = request.get_json()
-    print(json)
-    socketio.emit('swimlanes', json)
+    swimlanes_request = transform(json)
+    socketio.emit('swimlanes', swimlanes_request)
 
     res = make_response(jsonify({'message': 'Successful!'}), 200)
     return res
