@@ -1,1 +1,1 @@
-web: python reco.py
+web: gunicorn --worker-class eventlet -w 1 reco:app
