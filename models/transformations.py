@@ -12,8 +12,8 @@ def transform(req):
     return {
         "brand": req['brand'],
         "location": {
-            "lat": req["customer"]["lat"],
-            "lng": req["customer"]["lon"]
+            "lng": req["customer"]["lat"],
+            "lat": req["customer"]["lon"]
         },
         "count": len(req["swimlanes"]),
         "platform": friendly_useragent
