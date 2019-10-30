@@ -5,7 +5,7 @@ def transform(req):
     except:
         useragent = None
     friendly_useragent = 'web'
-    if useragent and useragent.is_mobile and useragent.os.family == 'iOs':
+    if useragent and useragent.is_mobile and useragent.os.family == 'iOS':
         friendly_useragent = 'apple'
     if useragent and useragent.is_mobile and useragent.os.family == 'Android':
         friendly_useragent = 'android'
