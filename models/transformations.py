@@ -16,5 +16,6 @@ def transform(req):
             "lat": req["customer"]["lon"]
         },
         "count": len(req["swimlanes"]),
-        "platform": friendly_useragent
+        "platform": friendly_useragent,
+        "originalObj": req
     }
