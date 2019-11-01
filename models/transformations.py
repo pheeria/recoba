@@ -11,7 +11,7 @@ def transform(req):
         friendly_useragent = "apple"
     if useragent and useragent.is_mobile and useragent.os.family == "Android":
         friendly_useragent = "android"
-    if useragent == "android":
+    if req["user_agent"] == "android":
         friendly_useragent = "android"
 
     return {
