@@ -17,10 +17,10 @@ def salem():
 @app.route("/new", methods=['POST'])
 def send_swimlanes():
     json = request.get_json()
-    print(json)
     try:
         swimlanes_request = transform(json)
         socketio.emit("swimlanes", swimlanes_request)
+        print(swimlanes_request)
         res = make_response(jsonify({"message": "Successful!"}), 200)
     except:
         res = make_response(

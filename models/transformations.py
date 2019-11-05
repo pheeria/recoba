@@ -2,21 +2,27 @@ from user_agents import parse
 
 
 def transform(req):
-    try:
-        useragent = parse(req["user_agent"])
-    except:
-        useragent = None
+    req_agent = str(req["user_agent"]).lower()
     friendly_useragent = "web"
-    if useragent and useragent.is_mobile and useragent.os.family == "iOS":
+
+    if "android" in req_agent:
+        friendly_useragent = "android"
+    elif "ios" in req_agent:
         friendly_useragent = "apple"
-    if useragent and useragent.is_mobile and useragent.os.family == "Android":
-        friendly_useragent = "android"
-    if req["user_agent"] == "android":
-        friendly_useragent = "android"
+    else:
+        try:
+            useragent = parse(req["user_agent"])
+        except:
+            useragent = None
+        if useragent and useragent.is_mobile and useragent.os.family == "iOS":
+            friendly_useragent = "apple"
+        if useragent and useragent.is_mobile and useragent.os.family == "Android":
+            friendly_useragent = "android"
 
     return {
         "id": req["request_id"],
         "brand": req["brand"],
+        "country": req["country"],
         "location": {
             "lng": req["customer"]["lat"],
             "lat": req["customer"]["lon"]
